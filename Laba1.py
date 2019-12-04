@@ -1,29 +1,30 @@
-import re
-def int_input(text):
-    pattern_int = r"^[-\d]\d*$"
-    user_input = text
-    while not re.match(pattern_int, user_input):
-        user_input = input("Enter int:")
-    return int(user_input)
-def float_input(text):
-    pattern_float = r"^\d+\.?\d*$"
-    user_input = text
-    while not re.match(pattern_float, user_input):
-        user_input = input("Enter float:")
-    return float(user_input)
+from int_and_float_validation import *
+from start_info_about_me import start_info
+
 def StrictInequality(a,b):
-    ModeA = float_input(a)
-    ModeB = float_input(b)
-    while ModeA==ModeB:
-        ModeA = float_input()
-        ModeB = float_input()
+    '''
+        func returne a and b if a!=b, else агтс asks to enter again
+    :param a:(float)
+    :param b:(float)
+    :return: (:param a),(:param b)
+    '''
+    A = float_input(a)
+    B = float_input(b)
+    while A==B:
+        A = float_input(input('same number again 1 :'))
+        B = float_input(input('same number again 2 :'))
     else:
-        return ModeA,ModeB
+        return A,B
+
+start_info()
+
+
+#**********************************************************
+# я неписав функ для кожної під програми, вони занадто малі
+#також не написав функ для повторення програми, незміг
+#**********************************************************
+
 print("""
-------------------
-Sasha Korets KM-92
-------------------
-variant #4
 ------------------
 1-open first work
 2-open second work
@@ -62,7 +63,7 @@ while True:
 замінити половиною їх суми,
 а більше - їх подвоєним добутком.
 ---------------------------------""")
-        x,y = StrictInequality(input('same number:'),input('same number:'))
+        x,y = StrictInequality(input('same number 1 :'),input('same number 2 :'))
         print('x = ',x,'\ny = ',y)
         if x > y:
             y1 = (x + y) / 2
