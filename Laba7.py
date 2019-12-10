@@ -19,15 +19,22 @@ def check_name_file(name_file1):
     '''
     if os.path.exists(name_file1):
         print("Зазначений файл існує")
-        name_file1
-        return
+        return name_file1
     else:
         print("Файл не існує")
         k = input('create? - 1\nexit - other')
         if k == '1':
+            try:
+                open('{}'.format(name_file1), 'w+')
+                return name_file1
+            except:
+                print("error, i can't create thise file")
+                name_file1 = input("введіть ім'я вашого файлу : ")
             return name_file1
         else:
             exit('goodbye')
+
+
 def write_smaller_then_0(name_file):
     '''
         func write all number how > 0 on file(param(name_file))
