@@ -11,7 +11,7 @@ def change_position(len_of_group,position_first_group,position_second_group,loca
     :param same_list: example: [1,2,3,4,5,6,7,8,9]
     :return: example: [1,*8,9*,4,5,6,7,*2,3*]
     '''
-    if position_second_group-position_first_group >= len_of_group:
+    if max(position_second_group,position_first_group)-min(position_second_group,position_first_group) >= len_of_group:
         if len_of_group != 0:
             local_list[position_second_group:position_second_group + 1], \
                 local_list[position_first_group:position_first_group + 1] = \
@@ -42,12 +42,15 @@ def work_with_martix(row,stack):
     :param stack:
     :return:
     '''
-    a = np.random.randint(-9,10,(row,stack))
-    print(a)
-    result = 0
-    for i in range(row):
-        result = min(sum(a[i]),result)
-    return result/stack
+    if row>0 and stack>0:
+        a = np.random.randint(-9,10,(row,stack))
+        print(a)
+        result = 0
+        for i in range(row):
+            result = min(sum(a[i]),result)
+        return result/stack
+    else:
+        return 'error'
 start_info()
 while True:
     print('''
@@ -60,6 +63,7 @@ other-exit
     number_of_job = input('what do you open wokr?')
     if number_of_job == '1':
         data_list = [0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+        print(data_list)
         print(change_position(int_input(input('введіть довжину групи символів які хочете змінити:')),int_input(input('введіть індекс 1 групи:')),int_input(input('введіть індекс 2 групи:')),data_list))
     elif number_of_job == '2':
         print('найменше середнє арефметичне в рядках:',work_with_martix(positive_int_input(input('введіть кількість рядків:')),positive_int_input(input('введіть кількість стовпців:'))))
